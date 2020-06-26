@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import pandas as pd
 
 
 app = Flask(__name__)
@@ -9,24 +10,28 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 db = SQLAlchemy(app)
 
-
-
 class Todo(db.Model):
     __tablename__ = "todos"
 
     id          = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title       = db.Column(db.Text())
     content     = db.Column(db.Text())
-    #commit      = db.Column(db.Integer, autoincrement=True)
     create_date = db.Column(db.DateTime, default=datetime.utcnow)
+
+    columns = ['id', 'title', 'content', 'create_date']
 
 db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    todo = Todo(title='title', content='test content')
-    db.session.add(todo)
-    db.session.commit()
+    todos = Todo.query.all()
+    
+    df = pd.DataFrame(columns=Todo.columns)
+    for todo in todos:
+        row = pd.DataFrame([[todo.id, todo.title, todo.content, todo.create_date]], columns=df.columns)
+        df = df.append(row, ignore_index=True)
+    
+    app.logger.info(df.head())
 
     return render_template("index.html", todos=Todo.query.all())
 

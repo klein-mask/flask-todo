@@ -1,10 +1,13 @@
 FROM python:3.8.3-slim-buster
 
+WORKDIR /work
+
+COPY requirements.txt /work/requirements.txt
+
 RUN pip install --upgrade pip && \
-    pip install flask flask_sqlalchemy
+    pip install -r requirements.txt
 
 EXPOSE 5000
 
-WORKDIR /app
 
 CMD [ "python", "/app/main.py" ]
