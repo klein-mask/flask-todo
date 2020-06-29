@@ -1,16 +1,47 @@
+
+/* A Modern CSS Reset */
+*,*::before,*::after{box-sizing:border-box}ul[class],ol[class]{padding:0}body,h1,h2,h3,h4,p,ul[class],ol[class],figure,blockquote,dl,dd{margin:0}html{scroll-behavior:smooth}body{min-height:100vh;text-rendering:optimizeSpeed;line-height:1.5}ul[class],ol[class]{list-style:none}a:not([class]){text-decoration-skip-ink:auto}img{max-width:100%;display:block}article>*+*{margin-top:1em}input,button,textarea,select{font:inherit}img:not([alt]){filter:blur(10px)}@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}}
+
+@charset "utf-8";
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+p {
+  line-height: 1.5em;
+}
+
+/*==========================
+
+Template css for index.html
+
+============================*/
+.todo-table {
+  margin: 10em auto;
+  width: 70%;
+  border-style: dashed;
+  border-collapse: collapse;
+}
+.todo-table th {
+  border-bottom: 1px dashed #ccc;
+}
+/*
+.task-table tr, .task-table td {
+  border-style: solid dashed;
+  border-width: 2px;
+}
+*/
 /*==========================
 
 Template css for login.html
 
 ============================*/
 
-@charset "utf-8";
-@import url(http://weloveiconfonts.com/api/?family=fontawesome);
 
-[class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
-}
 
+
+/*
 body {
   background: #2c3338;
   color: #606468;
@@ -27,9 +58,7 @@ input {
   -webkit-appearance: none;
 }
 
-p {
-  line-height: 1.5em;
-}
+
 
 after { clear: both; }
 
@@ -94,3 +123,4 @@ after { clear: both; }
 #login form input[type="submit"]:hover {
   background: #16aa56;
 }
+*/
