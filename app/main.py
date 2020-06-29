@@ -16,11 +16,11 @@ class Todo(db.Model):
     id          = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title       = db.Column(db.Text())
     content     = db.Column(db.Text())
-    create_date = db.Column(db.DateTime, default=datetime.utcnow)
+    create_date = db.Column(db.DateTime, default=datetime.now())
 
     columns = ['id', 'title', 'content', 'create_date']
 
-db.create_all()
+#db.create_all()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -34,6 +34,17 @@ def index():
     app.logger.info(df.head())
 
     return render_template("index.html", todos=Todo.query.all())
+
+#def add()
+
+@app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    if request.method == 'GET':
+        todos = Todo.query.all()
+        for todo in todos:
+            db.session.delete(todo)
+            db.session.commit()
+    return 'Deleted'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

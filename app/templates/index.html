@@ -9,12 +9,15 @@
             <th>Created</th>
         </tr>
 
-        <tr>
-            <td>破線</td>
-            <td>破線</td>
-            <td>破線</td>
-            <td>破線</td>
-        </tr>
+        {% for todo in todos %}
+            <tr>
+                <td>{{todo.id}}</td>
+                <td>{{todo.title}}</td>
+                <td>{{todo.content}}</td>
+                <td>{{todo.create_date}}</td>
+            </tr>
+        {% endfor %}
+
     </table>
 </div>
 {% endblock %}
